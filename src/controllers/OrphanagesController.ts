@@ -10,6 +10,9 @@ import OrphanageView from '../views/orphanages_view';
 import AppError from '../errors/AppError';
 import uploadConfig from '../config/upload';
 
+import CreateOrphanageService from '../services/CreateOrphanageService';
+import DiskStorageProvider from '../providers/StorageProvider/implementations/DiskStorageProvider';
+
 export default {
     async index(request: Request, response: Response) {
         const orphanagesRepository = getRepository(Orphanage);
@@ -34,61 +37,19 @@ export default {
     },
 
     async create(request: Request, response: Response) {
-        const {
-            name,
-            latitude,
-            longitude,
-            about,
-            instructions,
-            opening_hours,
-            open_on_weekends,
-        } = request.body;
-
-        const orphanagesRepository = getRepository(Orphanage);
+        const orphanage = request.body;
 
         const requestImages = request.files as Express.Multer.File[];
         const images = requestImages.map(image => {
             return { path: image.filename }
         });
-        const data = {
-            name,
-            latitude,
-            longitude,
-            about,
-            instructions,
-            opening_hours,
-            open_on_weekends: open_on_weekends === 'true',
-            images,
-        };
 
-        const checkNameExists = await orphanagesRepository.findOne({
-            where: { name },
-        })
+        const diskStorage = new DiskStorageProvider();
+        const createOrphanage = new CreateOrphanageService(diskStorage);
 
-        if (checkNameExists) throw new AppError('Orphanage already exists');
+        const createdOrphanage = await createOrphanage.execute({ images, orphanage });
 
-        const schema = Yup.object().shape({
-            name: Yup.string().required(),
-            latitude: Yup.number().min(-90).max(90).required(),
-            longitude: Yup.number().min(-180).max(180).required(),
-            about: Yup.string().required().max(300),
-            instructions: Yup.string().required(),
-            opening_hours: Yup.string().required(),
-            open_on_weekends: Yup.boolean().required(),
-            images: Yup.array(Yup.object().shape({
-                path: Yup.string().required()
-            })),
-        })
-
-        await schema.validate(data, {
-            abortEarly: false,
-        })
-
-        const orphanage = orphanagesRepository.create(data);
-
-        await orphanagesRepository.save(orphanage);
-
-        return response.status(201).json(orphanage);
+        return response.status(201).json(createdOrphanage);
     },
     async update(request: Request, response: Response) {
         const orphanagesRepository = getRepository(Orphanage);
@@ -114,8 +75,6 @@ export default {
         const orphanage = await orphanagesRepository.findOne(id);
 
         if (!orphanage) throw new AppError("Orphanage not found.");
-
-        console.log(orphanage);
 
         orphanage.name = name;
         orphanage.latitude = latitude;
@@ -153,8 +112,6 @@ export default {
         }, {
             abortEarly: false,
         });
-
-        console.log(orphanage);
 
         await orphanagesRepository.save(orphanage);
 
