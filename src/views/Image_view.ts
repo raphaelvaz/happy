@@ -4,7 +4,7 @@ export default {
     render(image: Image) {
         return {
             id: image.id,
-            url: `http://192.168.15.5:3333/tmp/uploads/${image.path}`,
+            url: `${process.env.APP_S3_URL}${image.path}`,
         };
     },
 

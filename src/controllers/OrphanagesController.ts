@@ -1,18 +1,13 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import * as Yup from 'yup';
-import path from 'path';
-import fs from 'fs';
 
 import Orphanage from '../models/Orphanage';
-import Image from '../models/Image';
 import OrphanageView from '../views/orphanages_view';
-import AppError from '../errors/AppError';
-import uploadConfig from '../config/upload';
 
 import CreateOrphanageService from '../services/CreateOrphanageService';
 import UpdateOrphanageService from '../services/UpdateOrphanageService';
 import DiskStorageProvider from '../providers/StorageProvider/implementations/DiskStorageProvider';
+import S3StorageProvider from '../providers/StorageProvider/implementations/S3StorageProvider';
 import DeleteOrphanageService from '../services/DeleteOrphanageService';
 
 export default {
@@ -46,8 +41,8 @@ export default {
             return { path: image.filename }
         });
 
-        const diskStorage = new DiskStorageProvider();
-        const createOrphanage = new CreateOrphanageService(diskStorage);
+        const s3Storage = new S3StorageProvider();
+        const createOrphanage = new CreateOrphanageService(s3Storage);
 
         const createdOrphanage = await createOrphanage.execute({ images, orphanage });
 
@@ -64,8 +59,8 @@ export default {
             return { path: image.filename }
         });
 
-        const diskStorage = new DiskStorageProvider();
-        const updateOrphanage = new UpdateOrphanageService(diskStorage);
+        const s3Storage = new S3StorageProvider();
+        const updateOrphanage = new UpdateOrphanageService(s3Storage);
 
         await updateOrphanage.execute({ id, images, orphanage });
 
@@ -74,8 +69,8 @@ export default {
     async delete(request: Request, response: Response) {
         const { id } = request.params;
 
-        const diskStorage = new DiskStorageProvider();
-        const deleteOrphanage = new DeleteOrphanageService(diskStorage);
+        const s3Storage = new S3StorageProvider();
+        const deleteOrphanage = new DeleteOrphanageService(s3Storage);
 
         await deleteOrphanage.execute({ id });
 
