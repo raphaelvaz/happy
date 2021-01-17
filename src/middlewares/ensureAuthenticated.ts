@@ -18,6 +18,10 @@ function ensureAuthentited(request: Request, response: Response, next: NextFunct
     const [, token] = authHeader.split(' ');
 
     try {
+        if (!authConfig.jwt.secret) {
+            throw new AppError("Invalid JWT token");
+        }
+
         const decoded = verify(token, authConfig.jwt.secret);
 
         const { sub } = decoded as TokenPayLoad;

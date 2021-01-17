@@ -39,7 +39,8 @@ export default class CreateOrphanageService {
 
         if (checkNameExists) {
             images.forEach(async ({ path }) => {
-                await this.StorageProvider.delete("../" + path);
+                //TODO
+                //await this.StorageProvider.delete("../" + path);
             });
             throw new AppError('Orphanage already exists');
         }

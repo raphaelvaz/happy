@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "start": "node dist/server.js",
+    "build": "tsc"
   },
   "dependencies": {
     "aws-sdk": "^2.828.0",

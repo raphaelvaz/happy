@@ -27,6 +27,8 @@ export default {
 
         const { secret, expiresIn } = authConfig.jwt;
 
+        if (!secret) throw new AppError("Invalid JWT Token");
+
         const token = sign({}, secret, {
             subject: user.id,
             expiresIn,
