@@ -2,6 +2,7 @@
     width: 100vw;
     height: 100vh;
     background: linear-gradient(329.54deg, #29B6D1 8%, #88C7C7 100%);
+    padding:10px;
 
     display: flex;
     justify-content: center;
@@ -21,7 +22,8 @@
     flex-direction: column;
     justify-content: space-between;
 
-    background: url("../../images/landing.svg") no-repeat 80% center;
+    background: url("../../images/landing.svg") no-repeat center;
+    background-position: 80% 10%;
 }
 #page-landing .content-wrapper main {
     max-width: 350px;
