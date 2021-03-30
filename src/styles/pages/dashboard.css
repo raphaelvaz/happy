@@ -1,0 +1,75 @@
+aside div button{
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+  
+    background: #12AFCB;
+    border-radius: 16px;
+    outline: none;
+  
+    cursor: pointer;
+  
+    transition: background-color 0.2s;
+}
+
+div button:hover {
+    background: #17D6EB;
+}
+.page-body{
+    width: 80%;
+    margin-left: 208px;
+    color: #5C8599;
+}
+.dash-main{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+header h1{
+    border-bottom: 2px solid #D3E2E5;
+
+    padding-top: 64px;
+}
+.orpha-map{
+    width: 500px;
+    height: 309px;
+
+    margin:  20px 20px 60px 20px;
+}
+.orpha-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    width: 500px;
+    height: 72px;
+
+    border-radius: 0 0 20px 20px;
+
+    background-color: #fff;
+}
+
+.orpha-info button {
+    width: 48px;
+    height: 48px;
+
+    margin-left: 10px;
+
+    border: 0;
+    border-radius: 16px;
+    outline: none;
+  
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.orpha-info button:hover {
+    background: #D3DADB;
+}
