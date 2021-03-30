@@ -1,0 +1,69 @@
+#page-onsuccess{
+    width: 100vw;
+    height: 100vh;
+    background: #FF669D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding:10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#page-onsuccess .wrapper {
+    width:100%;
+    max-width: 1100px;
+
+    height: 100%;
+    max-height: 680px;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: url("../../images/on-delete.svg") no-repeat center;
+    background-position: 90% 50%;
+    background-size: 350px;
+}
+#page-onsuccess .wrapper main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    max-width: 400px;
+    height: 500px;
+    text-align: center;
+    margin: auto 150px;
+}
+
+#page-onsuccess .wrapper main h1{
+    font-size: 76px;
+    font-weight: 900;
+    line-height: 78px;
+    margin-bottom: 40px;
+}
+
+#page-onsuccess .wrapper main p{
+    font-size: 24px;
+    line-height: 34px;
+}
+
+.wrapper a
+{
+    width: 243px;
+
+    background:#D6487B;
+    color:#fff;
+    text-decoration: none;
+
+    border-radius: 15px;
+    padding: 15px 35px;
+
+    transition: background-color 0.2s;
+}
+
+.wrapper a:hover{
+    background: #FF669D;
+}
