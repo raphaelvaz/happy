@@ -8,8 +8,8 @@ interface User {
 }
 
 interface SignInCredentials {
-    email: string;
-    password: string;
+    inputEmail: string;
+    inputPassword: string;
 }
 
 interface AuthContextData {
@@ -39,10 +39,11 @@ const AuthProvider: React.FC = ({ children }) => {
         return {} as AuthState;
     })
 
-    const signIn = async ({ email, password }: SignInCredentials) => {
-        const response = await api.post('sessions', { email, password })
+    const signIn = async ({ inputEmail, inputPassword }: SignInCredentials) => {
+        const response = await api.post('sessions', { email: inputEmail, password: inputPassword })
 
-        const { token, user } = response.data
+        const { token, name, email } = response.data
+        const user = { name, email }
 
         localStorage.setItem('@Happy:token', token)
         localStorage.setItem('@Happy:user', JSON.stringify(user))

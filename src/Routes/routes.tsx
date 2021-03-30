@@ -8,6 +8,7 @@ import CreateOrphanage from '../pages/CreateOrphanage';
 import OnSuccess from '../pages/OnSuccess'
 import Login from '../pages/Login'
 import OnDelete from '../pages/OnDelete'
+import Dashboard from '../pages/Dashboard'
 
 function Routes() {
     return (
@@ -22,6 +23,7 @@ function Routes() {
                 <Route path="/login" component={Login} />
 
                 <Route isPrivate path="/deleted" component={OnDelete} />
+                <Route isPrivate path="/dashboard" component={Dashboard} />
             </Switch>
         </BrowserRouter>
     );

@@ -22,7 +22,7 @@ function Login() {
 
             await schema.validate({ email, password });
 
-            await signIn({ email, password })
+            await signIn({ inputEmail: email, inputPassword: password })
             history.push('/dashboard')
         } catch (err) {
             console.log(err)
