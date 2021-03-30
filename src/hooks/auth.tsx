@@ -49,6 +49,7 @@ const AuthProvider: React.FC = ({ children }) => {
         localStorage.setItem('@Happy:user', JSON.stringify(user))
 
         api.defaults.headers.authorization = `Bearer ${token}`
+        setUserData({ token, user });
     }
 
     const signOut = () => {
