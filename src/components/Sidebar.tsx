@@ -6,13 +6,15 @@ import mapMarkerImg from '../images/map-marker.svg';
 
 import '../styles/components/sidebar.css';
 
-export default function Sidebar() {
+const Sidebar: React.FC = ({ children }) => {
     const { goBack } = useHistory();
 
     return (
         <aside className="app-sidebar">
             <img src={mapMarkerImg} alt="Happy" />
-
+            <main>
+                {children}
+            </main>
             <footer>
                 <button type="button" onClick={goBack}>
                     <FiArrowLeft size={24} color="#FFF" />
@@ -21,3 +23,5 @@ export default function Sidebar() {
         </aside>
     );
 }
+
+export default Sidebar;
