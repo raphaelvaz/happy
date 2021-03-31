@@ -4,7 +4,7 @@ export default {
     render(image: Image) {
         return {
             id: image.id,
-            url: `${process.env.APP_S3_URL}${image.path}`,
+            url: `${process.env.APP_API_URL}${image.path}`,
         };
     },
 
