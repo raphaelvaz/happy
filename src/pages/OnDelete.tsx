@@ -14,7 +14,7 @@ function onDelete() {
                         <p>Você acabou de excluir um orfanato do nosso banco de dados.</p>
                     </div>
                     <Link to="/app">
-                        Voltar para o mapa
+                        Voltar para a Dashboard
                     </Link>
                 </main>
             </div>
