@@ -8,6 +8,7 @@ import SessionsController from './controllers/SessionController';
 import SendForgotPasswordEmailController from './controllers/SendForgotPasswordEmailController';
 import ResetPasswordController from './controllers/ResetPasswordController';
 import ApproveOrphanageController from './controllers/ApproveOrphanageController';
+import PendingOrphanageController from './controllers/PendingOrphanagesController'
 
 import ensureAuthenticated from './middlewares/ensureAuthenticated';
 import uploadConfig from './config/upload';
@@ -21,6 +22,8 @@ const upload = multer(uploadConfig);
 
 routes.get('/orphanages/accepted', AcceptedOrphanagesController.index);
 routes.get('/orphanages/accepted/:id', AcceptedOrphanagesController.show);
+routes.get('/orphanages/pending', ensureAuthenticated, PendingOrphanageController.index);
+routes.get('/orphanages/pending/:id', ensureAuthenticated, PendingOrphanageController.show);
 routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 
 routes.get('/orphanages', ensureAuthenticated, OrphanagesController.index);
