@@ -54,8 +54,10 @@ export default function Dashboard() {
     }
 
     const handleApprovePage = (id: string) => {
-        console.log(id)
         history.push(`/orphanages/approve/${id}`)
+    }
+    const handleUpdatePage = (id: string) => {
+        history.push(`/orphanages/profile/${id}`)
     }
 
     return (
@@ -90,7 +92,7 @@ export default function Dashboard() {
                                     <strong>{orphanage.name}</strong>
                                     <div>
                                         {orphanage.accepted ? <button onClick={() => handleDeleteOrphanage(orphanage.id)} ><FiTrash size={23} color="#15B6D6" /></button> : <button onClick={() => handleApprovePage(orphanage.id)} ><FiArrowRight size={23} color="#15B6D6" /></button>}
-                                        {orphanage.accepted ? <button ><FiEdit3 size={23} color="#15B6D6" /></button> : ''}
+                                        {orphanage.accepted ? <button onClick={() => handleUpdatePage(orphanage.id)} ><FiEdit3 size={23} color="#15B6D6" /></button> : ''}
                                     </div>
                                 </div>
                             </div>

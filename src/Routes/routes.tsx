@@ -10,6 +10,7 @@ import Login from '../pages/Login'
 import OnDelete from '../pages/OnDelete'
 import Dashboard from '../pages/Dashboard'
 import ApproveOrphanage from '../pages/ApproveOrphanage'
+import UpdateOrphanage from '../pages/UpdateOrphanage'
 
 function Routes() {
     return (
@@ -26,6 +27,7 @@ function Routes() {
                 <Route isPrivate path="/deleted" component={OnDelete} />
                 <Route isPrivate path="/dashboard" component={Dashboard} />
                 <Route isPrivate path="/orphanages/approve/:id" component={ApproveOrphanage} />
+                <Route isPrivate path="/orphanages/profile/:id" component={UpdateOrphanage} />
             </Switch>
         </BrowserRouter>
     );

@@ -1,7 +1,7 @@
-import React, { FormEvent, useState, ChangeEvent } from "react";
+import React, { FormEvent, useState, ChangeEvent, useEffect } from "react";
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { FiPlus } from "react-icons/fi";
 
@@ -10,18 +10,42 @@ import Sidebar from "../components/Sidebar";
 import mapIcon from "../utils/mapIcon";
 import api from "../services/api";
 
+interface OrphanageParams {
+  id: string
+}
+interface Image {
+  id: string;
+  url: string;
+}
+
 export default function UpdateOrphanage() {
+  const params = useParams<OrphanageParams>();
   const history = useHistory();
-
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
-
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
   const [instructions, setInstructions] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
+  const [accepted, setAccepted] = useState(true);
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    api.get(`orphanages/${params.id}`).then(response => {
+      const orphanage = response.data
+      setName(orphanage.name)
+      setAbout(orphanage.about)
+      setPosition({ latitude: orphanage.latitude, longitude: orphanage.longitude })
+      setInstructions(orphanage.instructions)
+      setOpenOnWeekends(orphanage.open_on_weekends)
+      setOpeningHours(orphanage.opening_hours)
+      setAccepted(orphanage.accepted)
+      setPreviewImages(orphanage.images.map((image: Image) => {
+        return image.url
+      }))
+    })
+  }, [params.id]);
 
   function handleMapClick(event: LeafletMouseEvent) {
     const { lat, lng } = event.latlng;
@@ -61,15 +85,18 @@ export default function UpdateOrphanage() {
     data.append('instructions', instructions);
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
+    data.append('accepted', String(accepted));
     images.forEach(image => {
       data.append('images', image);
     })
 
-    await api.post('orphanages', data);
+    console.log(data)
 
-    alert('Cadastro realizado com sucesso!');
+    await api.put(`/orphanages/${params.id}`, data);
 
-    history.push('/app');
+    alert('Alteração realizado com sucesso!');
+
+    history.push('/dashboard');
   }
 
   return (
@@ -80,7 +107,7 @@ export default function UpdateOrphanage() {
           <fieldset>
             <legend>Dados</legend>
             <Map
-              center={[-32.0358677, -52.1006924]}
+              center={[position.latitude, position.longitude]}
               style={{ width: '100%', height: 280 }}
               zoom={15}
               onclick={handleMapClick}
@@ -150,6 +177,21 @@ export default function UpdateOrphanage() {
                   type="button"
                   className={!open_on_weekends ? 'active' : ''}
                   onClick={() => setOpenOnWeekends(false)}
+                >Não</button>
+              </div>
+            </div>
+            <div className="input-block">
+              <label htmlFor="accpedted">Aprovado</label>
+              <div className="button-select">
+                <button
+                  type="button"
+                  className={accepted ? 'active' : ''}
+                  onClick={() => setAccepted(true)}
+                >Sim</button>
+                <button
+                  type="button"
+                  className={!accepted ? 'active' : ''}
+                  onClick={() => setAccepted(false)}
                 >Não</button>
               </div>
             </div>
