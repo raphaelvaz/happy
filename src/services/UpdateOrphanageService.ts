@@ -39,7 +39,7 @@ export default class UpdateOrphanageService {
 
         if (!orphanage) {
             images.forEach(async ({ path }) => {
-                await this.StorageProvider.delete("../" + path);
+                await this.StorageProvider.delete(path);
             });
             throw new AppError("Orphanage not found.");
         }
