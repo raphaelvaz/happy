@@ -11,6 +11,7 @@ import mapIcon from "../utils/mapIcon";
 import api from '../services/api';
 
 interface Orphanage {
+  id: string;
   name: string;
   latitude: number;
   longitude: number;
@@ -47,6 +48,12 @@ export default function ApproveOrphanage() {
   const handleApproved = () => {
     api.patch(`orphanages/${params.id}`).then(response => {
       history.push('/dashboard')
+    })
+  }
+
+  const handleDeleteOrphanage = (id: string) => {
+    api.delete(`orphanages/${id}`).then(response => {
+      history.push('/deleted')
     })
   }
 
@@ -125,8 +132,8 @@ export default function ApproveOrphanage() {
                 </div>
               )}
             </div>
-
             <button onClick={handleApproved} type="button" className="contact-button">Confirmar</button>
+            <button onClick={() => handleDeleteOrphanage(orphanage.id)} type="button" className="contact-button delete">Deletar</button>
           </div>
         </div>
       </main>
