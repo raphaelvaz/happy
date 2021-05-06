@@ -6,8 +6,8 @@ import '../styles/pages/on-delete.css';
 function onDelete() {
 
     return (
-        <div id="page-onsuccess">
-            <div className="wrapper">
+        <div id="page-ondelete">
+            <div className="delete-wrapper">
                 <main>
                     <div>
                         <h1>Excluir!</h1>

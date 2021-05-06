@@ -1,17 +1,17 @@
-#page-onsuccess{
+#page-ondelete {
     width: 100vw;
     height: 100vh;
-    background: #FF669D;
+    background: #ff669d;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding:10px;
+    padding: 10px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#page-onsuccess .wrapper {
-    width:100%;
+#page-ondelete .delete-wrapper {
+    width: 100%;
     max-width: 1100px;
 
     height: 100%;
@@ -26,7 +26,7 @@
     background-position: 90% 50%;
     background-size: 350px;
 }
-#page-onsuccess .wrapper main {
+#page-ondelete .delete-wrapper main {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -38,24 +38,23 @@
     margin: auto 150px;
 }
 
-#page-onsuccess .wrapper main h1{
+#page-ondelete .delete-wrapper main h1 {
     font-size: 76px;
     font-weight: 900;
     line-height: 78px;
     margin-bottom: 40px;
 }
 
-#page-onsuccess .wrapper main p{
+#page-ondelete .delete-wrapper main p {
     font-size: 24px;
     line-height: 34px;
 }
 
-.wrapper a
-{
+.delete-wrapper a {
     width: 273px;
 
-    background:#D6487B;
-    color:#fff;
+    background: #d6487b;
+    color: #fff;
     text-decoration: none;
 
     border-radius: 15px;
@@ -64,6 +63,6 @@
     transition: background-color 0.2s;
 }
 
-.wrapper a:hover{
-    background: #FF669D;
+.delete-wrapper a:hover {
+    background: #ff669d;
 }
