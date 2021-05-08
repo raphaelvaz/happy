@@ -1,6 +1,6 @@
 # Happy
 
-![](happy.gif)
+![](happyl.gif)
 
 ## Índice
 ## Descrição
