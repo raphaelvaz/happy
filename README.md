@@ -42,6 +42,20 @@ Sistema para ajudar a conectar orfanatos a possiveis visitantes. Adicionada áre
 
 <div id='run' />
 
+| Função | Método  |  Caminho  | Rota Autenticada | Corpo da Request | 200 | 400 | 404 |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |------------------- |------------------- | ------------------- |
+| Reset Password | POST |  http://localhost:3333/password/reset | - | - | - | - | - |
+| Send Forgot Password Email | POST |  http://localhost:3333/password/forgot | - | - | - | - | - |
+| Create Session | POST |  http://localhost:3333/orphanages |  - |  - | - | - | - |
+| Update Orphanage | PUT | http://localhost:3333/orphanages/:id |  SIM |  - | - | - | - |
+| Delete Orphanage | DELETE | http://localhost:3333/orphanages/:id |  SIM |  - | - | - | - |
+| Approve Orphanage | PATCH | http://localhost:3333/orphanages/:id |  SIM |  - | - | - | - |
+| Get Accepted Orphanages | GET | http://localhost:3333/orphanages/accepted |  - |  - | - | - | - |
+| Get Accepted Orphanage | GET | http://localhost:3333/orphanages/accepted/:id|  - |  - | - | - | - |
+| Get Orphanage | GET | http://localhost:3333/orphanages/:id |  SIM |  - | - | - | - |
+| Get Orphanages | GET | http://localhost:3333/orphanages/orphanages |  SIM |  - | - | - | - |
+| Get Pending Orphanages | GET | http://localhost:3333//orphanages/pending |  SIM |  - | - | - | - |
+
 ## Como rodar
 
 Primeiro clone o projeto:
