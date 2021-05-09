@@ -43,3 +43,66 @@ Sistema para ajudar a conectar orfanatos a possiveis visitantes. Adicionada áre
 <div id='run' />
 
 ## Como rodar
+
+Primeiro clone o projeto:
+
+```bash
+> git clone https://github.com/raphaelvaz/happy.git
+```
+Depois entre na pasta via terminal:
+
+```bash
+> cd happy/backend
+```
+Instale todas as dependências:
+
+```bash
+> yarn
+```
+Para rodar em ambiente de desenvolvimento crie um arquivo .env e adicione a URL do seu banco postgresSQL:
+
+```bash
+> DATABASE_URL=postgresql://[user[:password]@][netloc][:port][/dbname]
+```
+Adicione também ao arquivo .env a variavél a baixo e preencha a variavél APP_SECRET(jwt):
+
+```bash
+> APP_API_URL=http://localhost:3333/tmp/
+```
+Rode as migrations para gerar as tabelas no banco de dados:
+
+```bash
+> yarn typeorm migration:run
+```
+
+Depois rode: 
+```bash
+> yarn dev:server
+```
+
+Acesse a api através do endereço:
+```bash
+> http://localhost:3333
+```
+Abrindo outro terminal:
+
+```bash
+> CRTL + ALT + T 
+```
+Acesse a pasta frontend via terminal(supondo que foi feito o clone na pasta pessoal):
+
+```bash
+> cd happy/frontend
+```
+Instale todas as dependências:
+
+```bash
+> yarn
+```
+Rode o frontend:
+
+```bash
+> yarn start
+```
+A aplicação pode ser acessada através de: http://localhost:3000.
+
